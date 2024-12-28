@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ikun年度总结</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+    <style>
+        html {
+            overflow: hidden;
+        }
+        .tip {
+            display: flex;
+            justify-content: space-between;
+            height: 89px;
+            line-height: 40px;
+            width: 600px;
+            border-radius: 6px;
+            background-color: red;
+            box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+            margin: 25px auto;
+            margin-bottom: 30px;
+            color: #fff;
+            background-color: #1f1f1f;
+        }
+        .tip .img {
+            background-color: #fff;
+            width: 90px;
+            background-size: 20%;
+        }
+        .tip .text {
+            text-align: center;
+            line-height: 89px;
+            width: 80%;
+            font-size: 20px;
+            user-select: none;
+        }
+        .content {
+            cursor: pointer;
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 0 10px 10px rgba(48, 125, 255, 0.3);
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            transition: .5s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            line-height: 700px;
+            font-size: 24px;
+        }
+        #top {
+            box-shadow: 0 0 5px 5px rgba(48, 125, 255, 0.3);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+            height: 47%;
+        }
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 50%;
+        }
+        #left, #right {
+            box-shadow: 0 0 5px 5px rgba(48, 125, 255, 0.3);
+            color: white;
+            font-size: 24px;
+            width: 50%;
+            height: 100%;
+            text-align: center;
+        }
+        #right {
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+        <!-- 我允许你看代码了么 -->
+          <!-- 我允许你看代码了么 -->
+            <!-- 我允许你看代码了么 -->
+              <!-- 我允许你看代码了么 -->
+                <!-- 我允许你看代码了么 -->
+                  <!-- 我允许你看代码了么 -->
+                    <!-- 我允许你看代码了么 -->
+                      <!-- 我允许你看代码了么 -->
+                        <!-- 我允许你看代码了么 -->
+                      <!-- 我允许你看代码了么 -->
+                    <!-- 我允许你看代码了么 -->
+                  <!-- 我允许你看代码了么 -->
+                <!-- 我允许你看代码了么 -->
+               <!-- 我允许你看代码了么 -->
+            <!-- 我允许你看代码了么 -->
+          <!-- 我允许你看代码了么 -->
+        <!-- 我允许你看代码了么 -->
+    <div class="tip">
+        <div class="img">
+            <img width="100%" height="89px" src="https://img.ltyears.com/editor/18018/20241227/9121fc8c556a2e395a526f79806e9e91.gif" alt="">
+        </div>
+        <div class="text">看见那个发光的小方块了么？狠狠的击打它！</div>
+    </div>
+    <div class="content">
+        <div id="top"></div>
+        <div class="bottom">
+            <div id="left"></div>
+            <div id="right"></div>
+            <a href="" _></a>
+        </div>
+    </div>
+    <script>
+        let clickCount = 0;
+        let timeout = null;
+        const countMap = {
+            1: '很棒，继续！',
+            2: '我嘞个大饱！加油！',
+            3: '猜猜要点多少下？',
+            4: '猜不出来么，真笨比啊！',
+            5: '有点耐心不行么？',
+            6: '人之常情',
+            7: '快了，快了，别骂了！',
+            8: '最后一下喽！',
+        };
+        const tip = document.querySelector('.tip');
+        const box = document.querySelector('.content');
+        const text = document.querySelector('.text');
+        const nodes = [...box.children];
+        box.style.width = '100px';
+        box.style.height = '100px';
+        nodes.forEach(ele => ele.style.display = 'none');
+        box.onclick = () => {
+            if (clickCount > 7) {
+                text.innerHTML = '年度总结来咯🎉🎉🎉！！ <a style="color: red" href="https://www.yuque.com/rubly/xvn61d/xtpcwohmunlpckwf?singleDoc# 《说明：》" target="_blank">我要上诉</a>';
+                nodes.forEach(ele => ele.style.display = 'flex');
+                renderCharts();
+                return;
+            }
+            if (timeout) { 
+                text.innerText = '小逼手点那么快干嘛？';
+                clearTimeout(timeout)
+            }
+            timeout = setTimeout(() => {
+                timeout = null;
+                let width = parseInt(box.style.width) || 0;
+                let height = parseInt(box.style.height) || 0;
+                if (width < 900) box.style.width = `${width + 100}px`;
+                if (height < 700) box.style.height = `${height + 100}px`;
+                text.innerText = countMap[++clickCount]
+            }, 2000);
+        };
+        function renderCharts() {
+            const topChart = echarts.init(document.getElementById('top'));
+            const leftChart = echarts.init(document.getElementById('left'));
+            const rightChart = echarts.init(document.getElementById('right'));
+
+            const topOption = {
+                tooltip: { trigger: 'axis' },
+                legend: {
+                    data: ['被攻击', '被冷战', '被和平'],
+                    top: '5%',
+                },
+                grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+                xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] },
+                yAxis: { type: 'value' },
+                series: [
+                    {
+                        name: '被攻击',
+                        type: 'bar',
+                        data: [820, 932, 901, 934, 1290, 1330, 1320, 1210, 1150, 1160, 1080, 1200],
+                        itemStyle: { color: '#FF6F61' }
+                    },
+                    {
+                        name: '被冷战',
+                        type: 'bar',
+                        data: [720, 831, 799, 934, 1120, 1220, 1190, 1090, 950, 980, 870, 940],
+                        itemStyle: { color: '#6B8E23' }
+                    },
+                    {
+                        name: '被和平',
+                        type: 'bar',
+                        data: [620, 730, 701, 814, 1030, 1120, 1110, 1010, 900, 930, 840, 890],
+                        itemStyle: { color: '#00BFFF' }
+                    }
+                ]
+            };
+
+            const leftOption = {
+                tooltip: { trigger: 'item' },
+                series: [{
+                    name: '心情指数',
+                    type: 'pie',
+                    radius: '70%',
+                    data: [
+                        { value: 335, name: '一般', itemStyle: { color: '#ee7975' } },
+                        { value: 234, name: '生气', itemStyle: { color: '#32CD32' } },
+                        { value: 1548, name: '无语', itemStyle: { color: '#92d1f0' } }
+                    ]
+                }]
+            };
+
+            const rightOption = {
+                tooltip: { trigger: 'item' },
+                series: [{
+                    name: '攻击指数',
+                    type: 'pie',
+                    radius: '70%',
+                    data: [
+                        { value: 535, name: '冷战', itemStyle: { color: '#f2ca6b' } },
+                        { value: 634, name: '辱骂', itemStyle: { color: '#adde8b' } },
+                        { value: 1248, name: '和平', itemStyle: { color: '#ee7975' } }
+                    ]
+                }]
+            };
+
+            topChart.setOption(topOption);
+            leftChart.setOption(leftOption);
+            rightChart.setOption(rightOption);
+        }
+    </script>
+</body>
+</html>
