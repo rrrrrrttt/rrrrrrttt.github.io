@@ -193,7 +193,7 @@
             const topOption = {
                 tooltip: { trigger: 'axis' },
                 legend: {
-                    data: ['被攻击', '被冷战', '被和平'],
+                    data: ['攻击天数', '冷战天数', '和平天数'],
                     top: '5%',
                 },
                 grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
@@ -201,22 +201,22 @@
                 yAxis: { type: 'value' },
                 series: [
                     {
-                        name: '被攻击',
+                        name: '攻击天数',
                         type: 'bar',
                         data: [820, 932, 901, 934, 1290, 1330, 1320, 1210, 1150, 1160, 1080, 1200],
-                        itemStyle: { color: '#FF6F61' }
+                        itemStyle: { color: '#ee7975' }
                     },
                     {
-                        name: '被冷战',
+                        name: '冷战天数',
                         type: 'bar',
                         data: [720, 831, 799, 934, 1120, 1220, 1190, 1090, 950, 980, 870, 940],
-                        itemStyle: { color: '#6B8E23' }
+                        itemStyle: { color: '#00BFFF' }
                     },
                     {
-                        name: '被和平',
+                        name: '和平天数',
                         type: 'bar',
                         data: [620, 730, 701, 814, 1030, 1120, 1110, 1010, 900, 930, 840, 890],
-                        itemStyle: { color: '#00BFFF' }
+                        itemStyle: { color: '#adde8b' }
                     }
                 ]
             };
@@ -224,13 +224,12 @@
             const leftOption = {
                 tooltip: { trigger: 'item' },
                 series: [{
-                    name: '心情指数',
+                    name: '心情指数（按365天）',
                     type: 'pie',
                     radius: '70%',
                     data: [
-                        { value: 335, name: '一般', itemStyle: { color: '#ee7975' } },
-                        { value: 234, name: '生气', itemStyle: { color: '#32CD32' } },
-                        { value: 1548, name: '无语', itemStyle: { color: '#92d1f0' } }
+                        { value: 335, name: '不开心😡', itemStyle: { color: '#ee7975' } },
+                        { value: 234, name: '开心😄', itemStyle: { color: '#c9f3a2' } },
                     ]
                 }]
             };
@@ -238,13 +237,13 @@
             const rightOption = {
                 tooltip: { trigger: 'item' },
                 series: [{
-                    name: '攻击指数',
+                    name: '攻击指数（按365天）',
                     type: 'pie',
                     radius: '70%',
                     data: [
-                        { value: 535, name: '冷战', itemStyle: { color: '#f2ca6b' } },
-                        { value: 634, name: '辱骂', itemStyle: { color: '#adde8b' } },
-                        { value: 1248, name: '和平', itemStyle: { color: '#ee7975' } }
+                        { value: 535, name: '冷战🥶', itemStyle: { color: '#00BFFF' } },
+                        { value: 634, name: '和平🍺', itemStyle: { color: '#adde8b' } },
+                        { value: 1248, name: '辱骂🤢', itemStyle: { color: '#ee7975' } }
                     ]
                 }]
             };
