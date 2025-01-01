@@ -90,7 +90,6 @@
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            height: 24px;
             padding: 10px;
             box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
             color: #fff;
@@ -139,12 +138,13 @@
             const userAgent = navigator.userAgent.toLowerCase();
             return /iphone|ipod|android|webos|blackberry|iemobile|opera mini/.test(userAgent);
         }
+        const ismobile = isMobile()
         const computer = document.querySelector('.computer')
         const mobile = document.querySelector('.mobile')
-        
-        document.body.removeChild(isMobile() ? computer : mobile)
 
-        let clickCount = 8;
+        document.body.removeChild(ismobile ? computer : mobile)
+
+        let clickCount = 0;
         let timeout = null;
         const countMap = {
             1: '很棒，继续！',
@@ -159,30 +159,32 @@
         const tip = document.querySelector('.tip');
         const box = document.querySelector('.content');
         const text = document.querySelector('.text');
-        const nodes = [...box.children];
-        box.style.width = '900px';
-        box.style.height = '700px';
-        nodes.forEach(ele => ele.style.display = 'none');
-        box.onclick = () => {
-            if (clickCount > 7) {
-                text.innerHTML = '年度总结来咯🎉🎉🎉！！ <a style="color: red" href="https://www.yuque.com/rubly/xvn61d/xtpcwohmunlpckwf?singleDoc# 《说明：》" target="_blank">我要上诉</a>';
-                nodes.forEach(ele => ele.style.display = 'flex');
-                renderCharts();
-                return;
-            }
-            if (timeout) { 
-                text.innerText = '小逼手点那么快干嘛？';
-                clearTimeout(timeout)
-            }
-            timeout = setTimeout(() => {
-                timeout = null;
-                let width = parseInt(box.style.width) || 0;
-                let height = parseInt(box.style.height) || 0;
-                if (width < 900) box.style.width = `${width + 100}px`;
-                if (height < 700) box.style.height = `${height + 100}px`;
-                text.innerText = countMap[++clickCount]
-            }, 2000);
-        };
+        const nodes = box && [...box.children];
+        box && (box.style.width = '100px')
+        box && (box.style.height = '100px')
+        nodes && nodes.forEach(ele => ele.style.display = 'none');
+        if (box) {
+            box.onclick = () => {
+                if (clickCount > 7) {
+                    text.innerHTML = '年度总结来咯🎉🎉🎉！！ <a style="color: red" href="https://www.yuque.com/rubly/xvn61d/xtpcwohmunlpckwf?singleDoc# 《说明：》" target="_blank">我要上诉</a>';
+                    nodes.forEach(ele => ele.style.display = 'flex');
+                    renderCharts();
+                    return;
+                }
+                if (timeout) { 
+                    text.innerText = '小逼手点那么快干嘛？';
+                    clearTimeout(timeout)
+                }
+                timeout = setTimeout(() => {
+                    timeout = null;
+                    let width = parseInt(box.style.width) || 0;
+                    let height = parseInt(box.style.height) || 0;
+                    if (width < 900) box.style.width = `${width + 100}px`;
+                    if (height < 700) box.style.height = `${height + 100}px`;
+                    text.innerText = countMap[++clickCount]
+                }, 2000);
+            };
+        }
         function renderCharts() {
             const topChart = echarts.init(document.getElementById('top'));
             const leftChart = echarts.init(document.getElementById('left'));
